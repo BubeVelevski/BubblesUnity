@@ -563,7 +563,7 @@ Transform:
   m_GameObject: {fileID: 697769828}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.47, y: 0, z: 0}
+  m_LocalPosition: {x: 12, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -583,7 +583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfBubbles:
   - {fileID: 766648201295516189, guid: 5329ab7a52998bf4b8b95debbcf46a43, type: 3}
-  spawnInterval: 3
+  spawnInterval: 6
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,15 +811,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5197180085851457499, guid: e61f5b0b221d7fe4f8666ef08b8ad140, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.549746
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 5197180085851457499, guid: e61f5b0b221d7fe4f8666ef08b8ad140, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.31
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5197180085851457499, guid: e61f5b0b221d7fe4f8666ef08b8ad140, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.5963869
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5197180085851457499, guid: e61f5b0b221d7fe4f8666ef08b8ad140, type: 3}
       propertyPath: m_LocalRotation.w

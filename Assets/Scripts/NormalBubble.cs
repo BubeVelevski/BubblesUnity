@@ -66,6 +66,5 @@ public class BubbleData
 {
     public float flyStrength;
     //public int hpMax;
-    public float SearchRadius;
     public float bablInterval;
 }

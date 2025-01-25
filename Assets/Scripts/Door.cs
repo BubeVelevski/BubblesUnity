@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -8,4 +9,5 @@ public class Door : MonoBehaviour
         //health--;
         Destroy(other.gameObject);
     }
+    
 }
