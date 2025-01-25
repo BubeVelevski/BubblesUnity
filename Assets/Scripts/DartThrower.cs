@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DartThrower : MonoBehaviour
@@ -10,19 +12,18 @@ public class DartThrower : MonoBehaviour
     private float swipeTime;
     private Vector2 startPos;
     private Vector2 endPos;
-
+    
     public float minSwipeDist = 0;
     private float dartVelocity = 0;
     private float dartSpeed = 0;
-    public float maxDartSpeed = 40;
+    public float maxDartSpeed = 350;
     private Vector3 angle;
-
+    
     private bool thrown;
     private bool holding;
     private Vector3 newPosition;
-    public float smooth = 0.7f;
     private Rigidbody rb;
-
+    
     private void Start()
     {
         SetupDart();
@@ -50,7 +51,7 @@ public class DartThrower : MonoBehaviour
         rb.useGravity = false;
         Dart.transform.position = transform.position;
     }
-
+    
     void PickUpDart()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -58,7 +59,7 @@ public class DartThrower : MonoBehaviour
         newPosition = Camera.main.ScreenToWorldPoint(mousePos);
         Dart.transform.localPosition = Vector3.Lerp(Dart.transform.localPosition, newPosition, 80f * Time.deltaTime);
     }
-
+    
     private void Update()
     {
         if (holding)
@@ -70,7 +71,7 @@ public class DartThrower : MonoBehaviour
         {
             return;
         }
-
+    
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -95,7 +96,7 @@ public class DartThrower : MonoBehaviour
             {
                 CalculateSpeed();
                 CalculateAngle();
-                rb.AddForce(new Vector3((angle.x * dartSpeed), (angle.y * dartSpeed), (angle.z * dartSpeed)));
+                rb.AddForce(new Vector3((angle.x * dartSpeed), (angle.y * dartSpeed / 3), (angle.z * dartSpeed * 2)));
                 rb.useGravity = true;
                 holding = false;
                 thrown = true;
@@ -107,12 +108,27 @@ public class DartThrower : MonoBehaviour
             }
         }
     }
-
+    
     void CalculateSpeed()
     {
-        
+        if (swipeTime > 0)
+        {
+            dartVelocity = swipeDistance / (swipeDistance - swipeTime);
+        }
+    
+        dartSpeed = dartVelocity * 40f;
+        if (dartSpeed >= maxDartSpeed)
+        {
+            dartSpeed = maxDartSpeed;
+        }
+        if (dartSpeed <= maxDartSpeed)
+        {
+            dartSpeed += 40f;
+        }
+    
+        swipeTime = 0;
     }
-
+    
     void CalculateAngle()
     {
         angle = Camera.main.ScreenToWorldPoint(new Vector3(endPos.x, endPos.y + 50f, (Camera.main.nearClipPlane + 5f)));
