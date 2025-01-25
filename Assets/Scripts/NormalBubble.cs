@@ -9,37 +9,17 @@ using UnityEngine.UI;
 
 public class NormalBubble : MonoBehaviour
 {
+    private GameManager gm;
     public BubbleData Data;
-    /*public int hp
-    {
-        get
-        {
-            return _hp;
-        }
-        set
-        {
-            _hp = value;
-            hpSlider.maxValue = Data.hpMax;
-            hpSlider.value = _hp;
-            if (_hp <= 0)
-            {
-                Destroy(gameObject);
-            } 
-            else if (_hp > Data.hpMax) 
-            {
-                _hp = Data.hpMax;
-            }
-        }
-    }
-    [SerializeField] private Slider hpSlider;*/
+   
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject destination;
     private int _hp;
     
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody>();
-        //hp = Data.hpMax;
         Invoke("Babl", Data.bablInterval);
     }
 
@@ -57,6 +37,8 @@ public class NormalBubble : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        gm.AddPoints(1);
+        gm.AddCoins(1);
         Destroy(gameObject);
     }
 }
@@ -65,6 +47,5 @@ public class NormalBubble : MonoBehaviour
 public class BubbleData
 {
     public float flyStrength;
-    //public int hpMax;
     public float bablInterval;
 }
