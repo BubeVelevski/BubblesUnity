@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1401288456681358470}
   - component: {fileID: 676475103950408277}
   - component: {fileID: 8687127436938618674}
+  - component: {fileID: 6525067914085408501}
   m_Layer: 0
   m_Name: Dart
   m_TagString: Player
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -3.0120707, y: -0.30498, z: 0.45608}
-  m_LocalScale: {x: 0.10404762, y: 0.47273162, z: 0.10404762}
+  m_LocalScale: {x: 0.10404762, y: 0.47273174, z: 0.104047656}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -136,5 +137,19 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 2
+  m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6525067914085408501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420294813798706090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333d6ba7d8eda4f4d8c74f464ae29ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinSwipDist: 0
+  MaxDartSpeed: 350
