@@ -1,43 +1,120 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
+using System;
 using UnityEngine;
 
 public class DartThrower : MonoBehaviour
 {
-    public GameObject hoop;
-    private Rigidbody rigidbody;
-    private Vector3 screenPoint;
-    private Vector3 offset;
-    private Vector3 oldMouse;
-    private Vector3 mouseSpeed;
-    public float speed = 5;
+    private GameObject Dart;
+    private float startTime;
+    private float endTime;
+    private float swipeDistance;
+    private float swipeTime;
+    private Vector2 startPos;
+    private Vector2 endPos;
 
-    void Start()
+    public float minSwipeDist = 0;
+    private float dartVelocity = 0;
+    private float dartSpeed = 0;
+    public float maxDartSpeed = 40;
+    private Vector3 angle;
+
+    private bool thrown;
+    private bool holding;
+    private Vector3 newPosition;
+    public float smooth = 0.7f;
+    private Rigidbody rb;
+
+    private void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        SetupDart();
+    }
+    void SetupDart()
+    {
+        GameObject _dart = GameObject.FindGameObjectWithTag("Player");
+        Dart = _dart;
+        rb = Dart.GetComponent<Rigidbody>();
+        ResetDart();
+    }
+    void ResetDart()
+    {
+        angle = Vector3.zero;
+        endPos = Vector2.zero;
+        startPos = Vector2.zero;
+        dartSpeed = 0;
+        startTime = 0;
+        endTime = 0;
+        swipeDistance = 0;
+        swipeTime = 0;
+        thrown = false;
+        holding = false;
+        rb.linearVelocity = Vector3.zero;
+        rb.useGravity = false;
+        Dart.transform.position = transform.position;
     }
 
-    void OnMouseDown()
+    void PickUpDart()
     {
-        oldMouse = Input.mousePosition;
-        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Camera.main.nearClipPlane * 5f;
+        newPosition = Camera.main.ScreenToWorldPoint(mousePos);
+        Dart.transform.localPosition = Vector3.Lerp(Dart.transform.localPosition, newPosition, 80f * Time.deltaTime);
     }
 
-
-    void OnMouseDrag()
+    private void Update()
     {
-        var curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) - offset;
-        transform.position = curPosition;
+        if (holding)
+        {
+            PickUpDart();
+        }
+        
+        if (thrown)
+        {
+            return;
+        }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit _hit;
+            if (Physics.Raycast(ray, out _hit, 100f))
+            {
+                if (_hit.transform == Dart.transform)
+                {
+                    startTime = Time.time;
+                    startPos = Input.mousePosition;
+                    holding = true;
+                }
+            }
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            endTime = Time.time;
+            endPos = Input.mousePosition;
+            swipeDistance = (endPos - startPos).magnitude;
+            swipeTime = endTime - startTime;
+            if (swipeTime < 0.5f && swipeDistance > 30f)
+            {
+                CalculateSpeed();
+                CalculateAngle();
+                rb.AddForce(new Vector3((angle.x * dartSpeed), (angle.y * dartSpeed), (angle.z * dartSpeed)));
+                rb.useGravity = true;
+                holding = false;
+                thrown = true;
+                Invoke("ResetDart", 4f);
+            }
+            else
+            {
+                ResetDart();
+            }
+        }
     }
 
-    void OnMouseUp()
+    void CalculateSpeed()
     {
-        mouseSpeed = (oldMouse - Input.mousePosition);
-        rigidbody.AddForce(mouseSpeed * speed * -1, ForceMode.Force);
+        
+    }
 
+    void CalculateAngle()
+    {
+        angle = Camera.main.ScreenToWorldPoint(new Vector3(endPos.x, endPos.y + 50f, (Camera.main.nearClipPlane + 5f)));
     }
 }

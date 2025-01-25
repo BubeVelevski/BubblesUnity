@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision other)
+    // private void OnCollisionEnter(Collision other)
+    // {
+    //     health--;
+    //     Destroy(other.gameObject);
+    // }
+
+    private void OnTriggerEnter(Collider other)
     {
-        //health--;
         Destroy(other.gameObject);
     }
     
