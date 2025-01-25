@@ -150,9 +150,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data:
-    flyStrength: 1
+    flyStrength: 25
     hpMax: 1
-    SsearchRadius: 0
+    SearchRadius: 2000
+    bablInterval: 1
   hpSlider: {fileID: 0}
   rb: {fileID: 7907366764390752762}
   destination: {fileID: 7985752662078409197, guid: e61f5b0b221d7fe4f8666ef08b8ad140, type: 3}
