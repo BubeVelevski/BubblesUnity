@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +5,10 @@ public class BubbleSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> listOfBubbles;
     [SerializeField] private float spawnInterval;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        InvokeRepeating("SpawnBubble", spawnInterval, spawnInterval);
+        InvokeRepeating("SpawnBubble", 0, spawnInterval);
     }
 
     private void SpawnBubble()

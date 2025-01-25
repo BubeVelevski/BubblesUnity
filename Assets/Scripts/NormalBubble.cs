@@ -48,7 +48,7 @@ public class NormalBubble : MonoBehaviour
         FlyToDoor();
         Invoke("Babl", Data.bablInterval);
     }
-    
+        
     private void FlyToDoor()
     {
         Vector3 dir = (destination.transform.position - transform.position).normalized;

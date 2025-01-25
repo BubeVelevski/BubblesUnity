@@ -12,6 +12,7 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // other.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         Destroy(other.gameObject);
     }
     
