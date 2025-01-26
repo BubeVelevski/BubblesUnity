@@ -3,30 +3,39 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public HealthBar healthBar;
     private Door door;
     public int coinsCollected;
     public int points;
-    public int health;
+    public int maxHealth;
+    public int currentHealth;
 
     private void Start()
     {
-        door = FindObjectOfType<Door>();
+        currentHealth = maxHealth;
+        healthBar.SetSliderMaxHealth(maxHealth);
     }
 
     public void AddPoints(int amount)
     {
         points += amount;
-        Debug.Log($"Points: {points}");
     }
 
     public void AddCoins(int amount)
     {
-        coinsCollected += amount;
-        Debug.Log($"Coins Collected: {coinsCollected}");
+        coinsCollected += amount * 10;
     }
     public void SubtractHealth(int amount)
     {
-        health -= amount;
-        Debug.Log($"Health: {health - amount}");
+        currentHealth -= amount;
+        healthBar.SetSliderHealth(currentHealth);
+    }
+
+    private void Update()
+    {
+        if (currentHealth == 0)
+        {
+            //GameOver();
+        }
     }
 }
