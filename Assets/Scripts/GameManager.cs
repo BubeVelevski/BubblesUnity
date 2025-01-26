@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public void AddCoins(int amount)
     {
-        coinsCollected += amount * 10;
+        coinsCollected += amount;
     }
     public void SubtractHealth(int amount)
     {

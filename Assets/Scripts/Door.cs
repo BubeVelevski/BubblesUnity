@@ -18,11 +18,17 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (CompareTag("Normal"))
-        //{
+        if (other.gameObject.tag == "Normal")
+        {
             gm.SubtractHealth(1);
             // other.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
             Destroy(other.gameObject);
-        //}
+        }
+        else if (other.gameObject.tag == "Heavy")
+        {
+            gm.SubtractHealth(2);
+            // other.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+            Destroy(other.gameObject);
+        }
     }
 }

@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 7004929505663353056}
   - component: {fileID: 5436973786422121947}
   - component: {fileID: 7907366764390752762}
-  - component: {fileID: 1495733270259729992}
+  - component: {fileID: -4466856459310093056}
   m_Layer: 0
-  m_Name: NormalBubble
-  m_TagString: Normal
+  m_Name: HeavyBubble
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: -876546973899608171, guid: 124c112a6e8f1a54e8b0870e881b56d8, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +137,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!114 &1495733270259729992
+--- !u!114 &-4466856459310093056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,11 +146,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 766648201295516189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b397b3fed7adf7a4589b364ffdfc1542, type: 3}
+  m_Script: {fileID: 11500000, guid: 15883adbcca459944a6bebfe686153b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Data:
-    flyStrength: 10
+    flyStrength: 5
     bablInterval: 0.1
   rb: {fileID: 7907366764390752762}
   destination: {fileID: 7985752662078409197, guid: e61f5b0b221d7fe4f8666ef08b8ad140, type: 3}
