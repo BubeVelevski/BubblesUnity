@@ -1,59 +1,33 @@
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+public class StationaryCamera : MonoBehaviour
 {
-    public Transform target;  // The object that the camera will follow (your dart character)
-    public float rotationSpeed = 5f; // Speed of camera rotation
-    public float zoomSpeed = 2f; // Zoom speed for the camera
-    public float minZoom = 5f; // Minimum zoom level
-    public float maxZoom = 20f; // Maximum zoom level
-    public float defaultDistance = 10f; // Default distance between camera and character
-    private float currentZoom; // The current zoom level
+    public float lookSpeed = 2f;       // Speed of mouse look
+    public float lookUpLimit = -80f;  // Limit for looking up
+    public float lookDownLimit = 80f; // Limit for looking down
 
-    private float currentRotationX = 0f;
-    private float currentRotationY = 0f;
+    private float rotationX = 0f;     // Vertical rotation value (up/down)
+    private float rotationY = 0f;     // Horizontal rotation value (left/right)
 
-    private Camera mainCamera;
-
-    private bool isAiming = false; // Track if the player is aiming
-
-    private void Start()
+    void Start()
     {
-        mainCamera = Camera.main;
-        currentZoom = defaultDistance; // Set the initial zoom distance
+        // Lock and hide the cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    private void Update()
+    void Update()
     {
-        if (!isAiming)
-        {
-            // Get mouse input for normal camera rotation
-            float mouseX = Input.GetAxis("Mouse X");
-            float mouseY = Input.GetAxis("Mouse Y");
+        // Get mouse input
+        float mouseX = Input.GetAxis("Mouse X") * lookSpeed; // Horizontal mouse movement
+        float mouseY = Input.GetAxis("Mouse Y") * lookSpeed; // Vertical mouse movement
 
-            // Update camera rotation based on mouse movement (X-axis only)
-            currentRotationX += mouseX * rotationSpeed;
-            // Restrict vertical movement (Y-axis)
-            currentRotationY = Mathf.Clamp(currentRotationY - mouseY * rotationSpeed, -30f, 30f); // Limit vertical camera rotation
+        // Update rotation values
+        rotationY += mouseX;             // Horizontal rotation (left/right)
+        rotationX -= mouseY;             // Vertical rotation (up/down)
+        rotationX = Mathf.Clamp(rotationX, lookUpLimit, lookDownLimit); // Clamp vertical rotation
 
-            // Apply the calculated rotation to the camera's position
-            Quaternion rotation = Quaternion.Euler(currentRotationY, currentRotationX, 0);
-            Vector3 direction = rotation * Vector3.back; // Look in the direction the camera is facing
-            Vector3 targetPosition = target.position + direction * currentZoom;
-
-            // Apply smooth zoom based on mouse scroll input
-            currentZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-            currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
-
-            // Apply the new camera position and look at the target
-            mainCamera.transform.position = targetPosition;
-            mainCamera.transform.LookAt(target.position);
-        }
-    }
-
-    // Set whether the player is aiming (prevents camera rotation while aiming)
-    public void SetAiming(bool aiming)
-    {
-        isAiming = aiming;
+        // Apply the rotation to the camera
+        transform.rotation = Quaternion.Euler(rotationX, rotationY, 0);
     }
 }
