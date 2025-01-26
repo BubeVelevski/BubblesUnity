@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 51b8db80ea5e8ff44963daa436d4cae0
+guid: 74ab36fdf87daea43a8a814152bae615
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,22 +34,48 @@ ScriptedImporter:
   _generateMipMaps: 1
   _useSceneNameIdentifier: 1
   _textureCompression: -50
-  _gltfAsset: "<b>Generator: </b>Sketchfab-15.30.0\r\n<b>Version: </b>2.0\r\n\r\n<b>Extras:
-    </b>\r\n\"author\": \"\u042F\u0440\u043E\u0441\u043B\u0430\u0432 (https://sketchfab.com/ylevshin.01)\"\r\n\"license\":
-    \"CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)\"\r\n\"source\": \"https://sketchfab.com/3d-models/dart-a6cf94a1c24b476eb7c88320d52e38ff\"\r\n\"title\":
-    \"dart\"\r\n"
+  _gltfAsset: '<b>Generator: </b>Sketchfab-15.5.0
+
+    <b>Version: </b>2.0
+
+    
+
+    <b>Extras:
+    </b>
+
+    "author": "decentralized13 (https://sketchfab.com/decentralized13)"
+
+    "license":
+    "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)"
+
+    "source": "https://sketchfab.com/3d-models/green-dart-c7729c75552b487dbf443212176879e8"
+
+    "title":
+    "Green Dart"
+
+'
   optimizeGameObjects: 0
   materials:
   - {instanceID: 0}
+  textures:
   - {instanceID: 0}
   - {instanceID: 0}
-  textures: []
+  - {instanceID: 0}
   hasSceneData: 1
   hasAnimationData: 0
   hasMaterialData: 1
-  hasTextureData: 0
+  hasTextureData: 1
   animations: []
   _extensions: []
-  _textures: []
+  _textures:
+  - texture: {instanceID: 0}
+    shouldBeLinear: 0
+    shouldBeNormalMap: 0
+  - texture: {instanceID: 0}
+    shouldBeLinear: 1
+    shouldBeNormalMap: 0
+  - texture: {instanceID: 0}
+    shouldBeLinear: 1
+    shouldBeNormalMap: 1
   _mainAssetIdentifier: scenes/Sketchfab_Scene
   _importPlugins: []
