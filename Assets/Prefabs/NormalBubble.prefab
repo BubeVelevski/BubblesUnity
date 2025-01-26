@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data:
-    flyStrength: 50
+    flyStrength: 60
     bablInterval: 1
   rb: {fileID: 7907366764390752762}
   destination: {fileID: 7985752662078409197, guid: e61f5b0b221d7fe4f8666ef08b8ad140, type: 3}

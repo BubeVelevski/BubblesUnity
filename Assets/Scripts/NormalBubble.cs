@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class NormalBubble : MonoBehaviour
@@ -37,9 +38,12 @@ public class NormalBubble : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        gm.AddPoints(1);
-        gm.AddCoins(1);
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "Player")
+        {
+            gm.AddPoints(1);
+            gm.AddCoins(1);
+            Destroy(gameObject);
+        }
     }
 }
 
