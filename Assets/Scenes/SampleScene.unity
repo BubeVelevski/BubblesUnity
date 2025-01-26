@@ -918,7 +918,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfBubbles:
   - {fileID: 766648201295516189, guid: 5329ab7a52998bf4b8b95debbcf46a43, type: 3}
-  spawnInterval: 4
+  - {fileID: 766648201295516189, guid: 402dedbc2444c704ab1656d98fd3b945, type: 3}
+  spawnInterval: 5
 --- !u!1 &748416460
 GameObject:
   m_ObjectHideFlags: 0
