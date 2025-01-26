@@ -30,5 +30,11 @@ public class Door : MonoBehaviour
             // other.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
             Destroy(other.gameObject);
         }
+        else if (other.gameObject.tag == "Double")
+        {
+            gm.SubtractHealth(2);
+            // other.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+            Destroy(other.gameObject);
+        }
     }
 }
