@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class StationaryCamera : MonoBehaviour
 {
+    private GameManager gm;
     public float lookSpeed = 2f;       // Speed of mouse look
     public float lookUpLimit = -80f;  // Limit for looking up
     public float lookDownLimit = 80f; // Limit for looking down
@@ -11,9 +12,10 @@ public class StationaryCamera : MonoBehaviour
 
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         // Lock and hide the cursor
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
+        Cursor.visible = false;
     }
 
     void Update()

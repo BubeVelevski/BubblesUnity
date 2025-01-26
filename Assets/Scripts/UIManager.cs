@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        gm.points = 0;
     }
 
     private void Update()
